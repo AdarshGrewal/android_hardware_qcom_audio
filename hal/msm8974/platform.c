@@ -1866,6 +1866,12 @@ void platform_set_echo_reference(struct audio_device *adev, bool enable,
         else if (out_device & AUDIO_DEVICE_OUT_ALL_SCO)
             strlcat(ec_ref_mixer_path, " bt-sco",
                     MIXER_PATH_MAX_LENGTH);
+        else if (out_device & AUDIO_DEVICE_OUT_WIRED_HEADSET)
+            strlcat(ec_ref_mixer_path, " headset",
+                    MIXER_PATH_MAX_LENGTH);
+        else if (out_device & AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET)
+            strlcat(ec_ref_mixer_path, " bt-sco-headset",
+                    MIXER_PATH_MAX_LENGTH);
 
         if (audio_route_apply_and_update_path(adev->audio_route,
                                               ec_ref_mixer_path) == 0)
